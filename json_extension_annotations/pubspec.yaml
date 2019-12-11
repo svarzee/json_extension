@@ -1,5 +1,5 @@
 name: json_extension_annotations
-version: 0.1.0
+version: 0.2.0
 author: svarzee <svarzee@gmail.com>
 homepage: https://github.com/svarzee/json_extension
 description: >-
@@ -9,3 +9,4 @@ environment:
 
 dependencies:
   class_extensions_annotations: ^0.1.0
+  json_annotation: ^3.0.0
