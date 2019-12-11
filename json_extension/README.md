@@ -1,8 +1,8 @@
 Description
 ---
-Uses class_extensions to generate methods for object serialization from/to json.
+Uses class_extensions and json_serializable to generate methods for object serialization from/to json map/string.
 
-See also [to_string_extension](https://pub.dev/packages/to_string_extension), [json_extension](https://pub.dev/packages/json_extension)
+See also [withers_extension](https://pub.dev/packages/withers_extension), [to_string_extension](https://pub.dev/packages/to_string_extension)
 
 Tutorial
 ---
@@ -20,15 +20,19 @@ Tutorial
     ```
 
 2. For json serialization to work you need to add some boiler plate:
+    * `import 'dart:convert';`
     * `part 'model.g.dart';`
     * annotation `@Json()`
     * mixin `_$SomeValueClass`
     * all args constructor `SomeValueClass(this.strVal, this.intVal);`
+    * factories `SomeValueClass.fromJson(Map<String, dynamic> json)` and `SomeValueClass.fromJsonString(String json)`
 
     ##### `${PROJECT_ROOT}/lib/model.dart`
     ```dart
-    import 'package:meta/meta.dart';
+    import 'dart:convert';
+    
     import 'package:json_extension_annotations/annotations.dart';
+    import 'package:meta/meta.dart';
     
     part 'model.g.dart';
     
@@ -39,6 +43,12 @@ Tutorial
       final int intVal;
     
       SomeValueClass(this.strVal, this.intVal);
+    
+      factory SomeValueClass.fromJson(Map<String, dynamic> json) =>
+          _$SomeValueClass.fromJson(json);
+    
+      factory SomeValueClass.fromJsonString(String json) =>
+          _$SomeValueClass.fromJsonString(json);
     }
     ```
 
@@ -78,7 +88,13 @@ Tutorial
     import 'package:example/model.dart';
     
     void main() {
-      var json = SomeValueClass("some", 0);
+      var some = SomeValueClass("some", 0);
+    
+      var jsonMap = some.toJson();
+      var someFromMap = SomeValueClass.fromJson(jsonMap);
+    
+      var jsonString = some.toJsonString();
+      var someFromString = SomeValueClass.fromJsonString(jsonString);
     }
     ```
 

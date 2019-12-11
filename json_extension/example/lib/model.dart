@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_extension_annotations/annotations.dart';
 import 'package:meta/meta.dart';
 
@@ -13,4 +15,7 @@ class SomeValueClass with _$SomeValueClass {
 
   factory SomeValueClass.fromJson(Map<String, dynamic> json) =>
       _$SomeValueClass.fromJson(json);
+
+  factory SomeValueClass.fromJsonString(String json) =>
+      _$SomeValueClass.fromJsonString(json);
 }

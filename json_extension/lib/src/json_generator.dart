@@ -10,41 +10,25 @@ class JsonGenerator extends GeneratorForAnnotation<Json> {
     ClassElement clazz = element;
     final out = StringBuffer();
     out.writeln(_generateToJson(clazz));
+    out.writeln(_generateToJsonString(clazz));
     out.writeln(_generateFromJson(clazz));
+    out.writeln(_generateFromJsonString(clazz));
     return out.toString();
   }
 
   String _generateToJson(ClassElement clazz) {
-    return '''Map<String, dynamic> toJson() => <String, dynamic>{
-      ${_generateToJsonFields(clazz)}
-     };''';
+    return 'Map<String, dynamic> toJson() => _\$${clazz.name}ToJson(this as ${clazz.name});';
   }
 
-  String _generateToJsonFields(ClassElement clazz) {
-    return clazz.fields
-        .map((field) => _generateToJsonField(clazz, field))
-        .join(', \n');
-  }
-
-  String _generateToJsonField(ClassElement clazz, FieldElement field) {
-    return "'${field.name}': (this as ${clazz.name}).${field.name}";
+  String _generateToJsonString(ClassElement clazz) {
+    return 'String toJsonString() => json.encode(toJson());';
   }
 
   String _generateFromJson(ClassElement clazz) {
-    return '''static ${clazz.name} fromJson(Map<String, dynamic> json) => ${_generateCtor(clazz)};''';
+    return 'static ${clazz.name} fromJson(Map<String, dynamic> jsonMap) => _\$${clazz.name}FromJson(jsonMap);';
   }
 
-  String _generateCtor(ClassElement clazz) {
-    final out = StringBuffer();
-    out.write('${clazz.name}(');
-    out.write(clazz.unnamedConstructor.parameters
-        .map((param) => _generateCtorArg(param))
-        .join(', '));
-    out.write(')');
-    return out.toString();
-  }
-
-  String _generateCtorArg(ParameterElement param) {
-    return "json['${param.name}'] as ${param.type.name}";
+  String _generateFromJsonString(ClassElement clazz) {
+    return 'static ${clazz.name} fromJsonString(String jsonString) => fromJson(json.decode(jsonString));';
   }
 }
