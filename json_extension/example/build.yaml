@@ -1,6 +1,6 @@
 targets:
   $default:
     builders:
-      json_extension|json:
+      class_extensions:
         generate_for:
         - lib/*.dart

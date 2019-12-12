@@ -1,8 +1,6 @@
 builders:
-  json:
-    import: "package:json_extension/builder.dart"
-    builder_factories: ["jsonBuilder"]
-    build_extensions: {".dart": ["json.g.part"]}
-    applies_builders: ["class_extensions|extension_start", "class_extensions|extension_end", "source_gen|combining_builder"]
+  dummy_extension_generators:
+    import: "package:json_extension/json_extension.dart"
+    builder_factories: ["jsonDummyBuilder"]
+    build_extensions: {".dart": []}
     auto_apply: dependents
-    build_to: cache

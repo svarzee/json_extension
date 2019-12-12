@@ -59,7 +59,7 @@ Tutorial
     targets:
       $default:
         builders:
-          json_extension|json:
+          class_extensions:
             generate_for:
             - lib/*.dart
     ```
@@ -68,15 +68,14 @@ Tutorial
     ##### `${PROJECT_ROOT}/pubspec.yaml`
     ```yaml
     name: example
-
+    
     dependencies:
-      class_extensions_annotations: ^0.1.0
-      json_extension_annotations: ^0.1.0
-
+      json_extension_annotations: ^0.2.0
+    
     dev_dependencies:
       build_runner: ^1.0.0
-      class_extensions: ^0.3.0
-      json_extension: ^0.1.0
+      json_extension: ^0.2.0
+      json_serializable: ^3.2.3
     ```
 
 5. Run code generation: `pub run build_runner build`. File `${PROJECT_ROOT}/lib/model.g.dart` should be created.

@@ -2,25 +2,14 @@
 
 part of 'model.dart';
 
-// **************************************************************************
-// ExtensionStartGenerator
-// **************************************************************************
-
 mixin _$SomeValueClass {
-
-// **************************************************************************
-// JsonGenerator
-// **************************************************************************
-
-Map<String, dynamic> toJson() => _$SomeValueClassToJson(this as SomeValueClass);
-String toJsonString() => json.encode(toJson());
-static SomeValueClass fromJson(Map<String, dynamic> jsonMap) => _$SomeValueClassFromJson(jsonMap);
-static SomeValueClass fromJsonString(String jsonString) => fromJson(json.decode(jsonString));
-
-// **************************************************************************
-// ExtensionEndGenerator
-// **************************************************************************
-
+  Map<String, dynamic> toJson() =>
+      _$SomeValueClassToJson(this as SomeValueClass);
+  String toJsonString() => json.encode(toJson());
+  static SomeValueClass fromJson(Map<String, dynamic> jsonMap) =>
+      _$SomeValueClassFromJson(jsonMap);
+  static SomeValueClass fromJsonString(String jsonString) =>
+      fromJson(json.decode(jsonString));
 }
 
 // **************************************************************************

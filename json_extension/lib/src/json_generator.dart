@@ -1,9 +1,10 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
+import 'package:class_extensions/class_extensions.dart';
 import 'package:json_extension_annotations/annotations.dart';
 import 'package:source_gen/source_gen.dart';
 
-class JsonGenerator extends GeneratorForAnnotation<Json> {
+class JsonGenerator extends ClassExtensionGenerator<Json> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
