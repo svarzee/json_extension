@@ -1,3 +1,6 @@
+## 0.3.0
+* Upgrade dependencies
+
 ## 0.2.0
 * Use json_annotation
 
